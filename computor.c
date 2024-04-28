@@ -31,8 +31,6 @@ void parse_coefficients(char *equation, double coeffs[], int *degree, double sig
     }
 }
 
-void review_synthax(double coeffs[])
-
 int main(int argc, char *argv[]) {
     if (argc != 2) {
         printf("Usage: ./computor \"equation\"\n");
@@ -52,8 +50,6 @@ int main(int argc, char *argv[]) {
     parse_coefficients(left, coeffs, &degree, 1.0); 
     parse_coefficients(right, coeffs, &degree, -1.0);
 
-    review_synthax(coeffs);
-
     printf("Reduced form:");
     for (int i = 0; i <= degree; i++) {
         if (i == 0 || coeffs[i] != 0) {
@@ -64,6 +60,10 @@ int main(int argc, char *argv[]) {
     printf("Polynomial degree: %d\n", degree);
 
    //On resout l'équation selon le degré que l'on a trouvé
+    if (degree == 0) {
+
+        printf("Every real number is a solution.\n");
+    }
     if (degree == 1) {
         double solution = -coeffs[0] / coeffs[1];
         printf("The solution is:\n%.5f\n", solution);
